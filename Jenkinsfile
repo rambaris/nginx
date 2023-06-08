@@ -1,7 +1,7 @@
 pipeline {
   agent any
-     
-} 
+  
+
   stages {
     stage('Clone Git Repo') {
       steps {
@@ -21,7 +21,7 @@ pipeline {
     stage('Login to Docker Hub') {      	
            steps{ 
                 withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
-                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"                                 		
+                sh "docker login -u ${env.dockerUser} -p ${env.dockerPassword}"                                 		
 	            echo 'Login Completed'      
             }           
         } 
@@ -44,4 +44,5 @@ pipeline {
                  stage('Remote SSH') {
                  sshCommand remote: remote, command: "docker run -d -t servernginx -p 1137:1337 rambaris/myservernginx"
   }
+}
 }
