@@ -1,7 +1,6 @@
 pipeline {
   agent any
-  environment {     
-    DOCKERHUB_CREDENTIALS= credentials('dockerid')     
+     
 } 
   stages {
     stage('Clone Git Repo') {
